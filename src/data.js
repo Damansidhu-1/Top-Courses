@@ -21,4 +21,6 @@ export const filterData = [
   },
 ];
 
+
+// below given is apiUrl for top-course
 export const apiUrl = "https://codehelp-apis.vercel.app/api/get-top-courses";
