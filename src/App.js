@@ -4,6 +4,7 @@ import Filter from "./components/Filter";
 import Cards from "./components/Cards";
 import { filterData,apiUrl} from './data'
 import { toast } from "react-toastify";
+import Loader from "./components/Loader";
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const App = () => {
       // piche .data output dekh ke laea 
       // kyuki output vich ik hor key aa jide ch sara data 
       // console.log(output);
-      console.log(output.data);
+      // console.log(output.data);
       
     } 
     catch (error) {
@@ -49,9 +50,9 @@ const App = () => {
       </div>
 
       <div>
-        <Cards 
-          courses = {courses}
-        />
+        {
+          loading ? ( <Loader />) : ( <Cards courses ={courses} />)
+        }
       </div>
 
       
