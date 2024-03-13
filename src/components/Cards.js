@@ -7,6 +7,7 @@ const Cards = (props) => {
     // console.log("Printing data in cards");
     // console.log(courses);
 
+    let category = props.category;
     const[likedCourses , setLikedCourses] = useState([]);
     
     // converting data into one array
@@ -14,19 +15,24 @@ const Cards = (props) => {
     // return you a list of all courses recieved from the api response
     function getCourses() {
 
-        // ethe thalle likhe allCourses di declaration ch mistake hoe c 
-        // ehnu bahr define krta c getCourses de
-        let allCourses = [];
+        if(category === "All") {
+            // ethe thalle likhe allCourses di declaration ch mistake hoe c 
+            // ehnu bahr define krta c getCourses de
+            let allCourses = [];
 
-        Object.values(courses).forEach( array =>{
-            // ethe charo different categoryis aa jaangia
-            array.forEach( courseData => {
-                // ethe har category de vich de object aa jaange
-                allCourses.push(courseData);
+            Object.values(courses).forEach( array =>{
+                // ethe charo different categoryis aa jaangia
+                array.forEach( courseData => {
+                    // ethe har category de vich de object aa jaange
+                    allCourses.push(courseData);
+                } )
             } )
-        } )
-        return allCourses;
-
+            return allCourses;
+        }
+        else{
+            //main sirf specific categiry ka data array krunga  
+            return courses[category];
+        }
     }
 
     return (

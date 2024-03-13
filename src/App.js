@@ -10,6 +10,9 @@ const App = () => {
 
   const[courses , setCourses] = useState(null);
   const[loading , setLoading] = useState(true);
+  const[category , setCategory] = useState(filterData[0].title);
+  // the above line set default value of category to all 
+  // filterdata[0].title points to all (for more see data.js)
 
   // i forgot to do ap call
   // doing api call first time in react
@@ -47,12 +50,14 @@ const App = () => {
         <div>
           <Filter 
             filterData = {filterData}
+            category={category}
+            setCategory={setCategory}
           />
         </div>
 
         <div className="w-11/12 max-w-[1200px] mx-auto flex flex-wrap justify-center items-center min-h-[50vh]">
           {
-            loading ? ( <Loader />) : ( <Cards courses ={courses} />)
+            loading ? ( <Loader />) : ( <Cards courses ={courses} category = {category} />)
           }
         </div>
       </div>

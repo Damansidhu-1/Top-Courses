@@ -39,7 +39,7 @@ const Card = (props) => {
 
                 <div  className='w-[40px] h-[40px] bg-white rounded-full absolute right-2 bottom-[-12px] grid place-items-center'>
                 <button onClick={clickHandler}>
-                    {
+                     {
                         likedCourses.includes(course.id) ? 
                         (<FcLike fontSize="1.75rem" />)
                         :(<FcLikePlaceholder fontSize="1.75rem" />)
