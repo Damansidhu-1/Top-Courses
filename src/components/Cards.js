@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "./Card";
 
 const Cards = (props) => {
@@ -5,6 +6,8 @@ const Cards = (props) => {
     let courses = props.courses;
     // console.log("Printing data in cards");
     // console.log(courses);
+
+    const[likedCourses , setLikedCourses] = useState([]);
     
     // converting data into one array
     // kyuki pehla 4 array bne hoe c (see console for that)
@@ -31,7 +34,7 @@ const Cards = (props) => {
             {
                 getCourses().map( (course) => {
                     return (
-                        <Card key ={course.id}  course={course} />
+                        <Card key ={course.id}  course={course} likedCourses ={likedCourses} setLikedCourses = {setLikedCourses} />
                     );
 
                     

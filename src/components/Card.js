@@ -1,10 +1,36 @@
-import {FcLike} from "react-icons/fc"
+import {React ,useState} from "react";
+import {FcLike,FcLikePlaceholder} from "react-icons/fc"
+import { toast } from 'react-toastify';
 
 const Card = (props) => {
 
     let course =props.course
     // console.log("printing data in card");
     // console.log(course);
+    const [likedCourses, setLikedCourses] = useState([]);
+
+    function clickHandler(){
+        //logic
+        if (likedCourses.includes(course.id)) {
+            //pehle se like hua pada tha
+            // niche waali line oh courses paa rhi aa pta nhi kee ho reha
+            setLikedCourses( (prev) => prev.filter((cid)=> (cid !== course.id) )  );
+            toast.warning("like removed");
+        }
+        else{
+            //pehle se like nahi hai ye course
+            //insert karna h ye course liked courses me
+            if(likedCourses.length === 0 ) {
+                setLikedCourses([course.id]);
+            }
+            else {
+                //non-empty pehle se
+                setLikedCourses((prev) => [...prev, course.id]);
+            }
+            toast.success("Liked Successfully");
+        }
+    }
+
     return (
         <div  className='w-[300px] bg-bgDark bg-opacity-80 rounded-md overflow-hidden'>
             
@@ -12,8 +38,12 @@ const Card = (props) => {
                 <img src={course.image.url} alt={course.image.alt} ></img>
 
                 <div  className='w-[40px] h-[40px] bg-white rounded-full absolute right-2 bottom-[-12px] grid place-items-center'>
-                <button>
-                    <FcLike fontSize="1.75rem" />
+                <button onClick={clickHandler}>
+                    {
+                        likedCourses.includes(course.id) ? 
+                        (<FcLike fontSize="1.75rem" />)
+                        :(<FcLikePlaceholder fontSize="1.75rem" />)
+                    }
                 </button>
             </div>
 
